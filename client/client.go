@@ -72,3 +72,7 @@ func parseResponseBody[T any](resp *http.Response, result *T) error {
 
 	return nil
 }
+
+func (c *Client) RemainingRequests() int32 {
+	return c.RemainingTimes
+}
