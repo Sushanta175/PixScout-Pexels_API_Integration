@@ -9,7 +9,7 @@ type Config struct {
 	ApiToken string
 }
 
-func loadConfig() *Config {
+func LoadConfig() *Config {
 	apiToken := os.Getenv("Pexels_Token")
 	if apiToken == "" {
 		log.Fatal("Pexels API Token is not set in the enviorment variables.")
