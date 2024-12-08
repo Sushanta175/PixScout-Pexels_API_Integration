@@ -12,7 +12,7 @@ func main() {
 
 	var c = client.NewClient(cfg.ApiToken)
 
-	result, err := c.SearchPhotos("waves")
+	result, err := c.SearchPhotos("waves", 15, 1)
 	if err != nil {
 		fmt.Errorf("Search Error %v", err)
 	}
