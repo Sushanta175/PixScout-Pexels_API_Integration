@@ -56,7 +56,7 @@ func (c *Client) CuratedPhotos(per_page, page int) (*models.CuratedPhotosResult,
 	}()
 
 	if resp.StatusCode < 200 || resp.StatusCode > 299 {
-		return nil, fmt.Errorf("api error: received status code %w", resp.StatusCode)
+		return nil, fmt.Errorf("api error: received status code %d", resp.StatusCode)
 	}
 
 	data, err := io.ReadAll(resp.Body)
