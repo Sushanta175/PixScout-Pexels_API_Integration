@@ -1,45 +1,12 @@
 package client
 
 import (
-	"encoding/json"
 	"fmt"
-	"io"
 	"math/rand"
-	"net/http"
 
 	"github.com/Sushanta175/Go_Pexels_API/config"
 	"github.com/Sushanta175/Go_Pexels_API/models"
 )
-
-func (c *Client) performRequestWithAuth(method, url string) (*http.Response, error) {
-	resp, err := c.RequestDoWithAuth(method, url)
-	if err != nil {
-		return nil, fmt.Errorf("error making request: %v", err)
-	}
-
-	if resp.StatusCode < 200 || resp.StatusCode > 299 {
-		defer resp.Body.Close()
-		return nil, fmt.Errorf("api error: received status code %d", resp.StatusCode)
-	}
-
-	return resp, nil
-}
-
-func parseResponseBody[T any](resp *http.Response, result *T) error {
-	defer resp.Body.Close()
-
-	data, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return fmt.Errorf("error reading response body: %v", err)
-	}
-
-	err = json.Unmarshal(data, result)
-	if err != nil {
-		return fmt.Errorf("error Unmarshalling JSON: %v", err)
-	}
-
-	return nil
-}
 
 func (c *Client) SearchPhotos(query string, perPage, page int) (*models.PhotoSearchResult, error) {
 	url := fmt.Sprintf(config.PhotoApi+"search?query=%s&per_page=%d&page=%d", query, perPage, page)
