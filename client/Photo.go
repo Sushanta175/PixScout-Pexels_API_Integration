@@ -44,7 +44,11 @@ func (c *Client) GetPhoto(id int32) (*models.Photo, error) {
 
 	var result models.Photo
 	err = parseResponseBody(resp, &result)
-	return &result, err
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse photo response: %w", err)
+	}
+
+	return &result, nil
 }
 
 func (c *Client) GetRandomPhoto() (*models.Photo, error) {
