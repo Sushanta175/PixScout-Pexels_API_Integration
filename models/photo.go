@@ -29,3 +29,11 @@ type PhotoSource struct {
 	LandScape string `json:"landscape"`
 	Tiny      string `json:"tiny"`
 }
+
+type CuratedPhotosResult struct {
+	Page     int32   `json:"page"`
+	PerPage  int32   `json:"per_page"`
+	NextPage string  `json:"next_page"`
+	PrevPage string  `json:"prev_page"`
+	Photos   []Photo `json:"photos"`
+}
