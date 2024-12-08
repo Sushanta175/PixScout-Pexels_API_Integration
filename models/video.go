@@ -4,8 +4,8 @@ type VideoSearchResult struct {
 	Page         int32   `json:"page"`
 	PerPage      int32   `json:""`
 	TotalResults int32   `json:"total_results"`
-	NextPage     string  `json:"next_page"`
-	PrevPage     string  `json:"prev_page"`
+	NextPage     string  `json:"next_page,omitempty"`
+	PrevPage     string  `json:"prev_page,omitempty"`
 	Videos       []Video `json:"videos"`
 }
 
@@ -27,8 +27,8 @@ type PopularVideos struct {
 	TotalResults int32   `json:"total_results"`
 	Url          string  `json:"url"`
 	Videos       []Video `json:"videos"`
-	NextPage     string  `json:"next_page"`
-	PrevPage     string  `json:"prev_page"`
+	NextPage     string  `json:"next_page,omitempty"`
+	PrevPage     string  `json:"prev_page,omitempty"`
 }
 
 type VideoFile struct {
