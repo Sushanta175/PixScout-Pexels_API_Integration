@@ -38,7 +38,7 @@ func (c *Client) GetPhoto(id int32) (*models.Photo, error) {
 	url := fmt.Sprintf(config.PhotoApi+"photos/%d", id)
 
 	resp, err := c.performRequestWithAuth("GET", url)
-	if resp != nil {
+	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
 
