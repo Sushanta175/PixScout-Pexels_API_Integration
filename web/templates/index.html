@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Pexels Explorer</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+</head>
+<body>
+    <h1>Pexels Explorer</h1>
+    <input id="q" placeholder="Search…" />
+    <button hx-get="/api/photos" hx-target="#grid"
+            hx-include="#q" hx-vals='{"q": document.getElementById("q").value }'>
+        Search
+    </button>
+
+    <div id="grid" class="grid"></div>
+
+    <script>
+    document.body.addEventListener('htmx:afterRequest', evt => {
+        const data = JSON.parse(evt.detail.xhr.response);
+        const html = data.photos.map(p => `
+            <div class="card">
+                <img src="${p.src.medium}" alt="">
+                <p>${p.photographer}</p>
+            </div>
+        `).join('');
+        document.getElementById('grid').innerHTML = html;
+    });
+    </script>
+</body>
+</html>
