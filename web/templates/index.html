@@ -8,10 +8,10 @@
 </head>
 <body>
     <h1>Pexels Explorer</h1>
-    <input id="q" placeholder="Search…" />
+    <input id="q" name="q" placeholder="Search…" />
     <button hx-get="/api/photos" hx-target="#grid"
-            hx-include="#q" hx-vals='{"q": document.getElementById("q").value }'>
-        Search
+        hx-include="#q" hx-vals='{"q": document.getElementById("q").value }'>
+    Search
     </button>
 
     <div id="grid" class="grid"></div>
