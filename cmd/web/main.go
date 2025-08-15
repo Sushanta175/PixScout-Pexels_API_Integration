@@ -28,7 +28,8 @@ func main() {
 		if q == "" {
 			q = "nature"
 		}
-		res, err := c.SearchPhotos(q, 30, 1)
+		page := 1
+		res, err := c.SearchPhotos(q, 30, page)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
