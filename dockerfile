@@ -7,5 +7,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -o app ./cmd/web
 
 FROM gcr.io/distroless/static-debian12
 COPY --from=build /src/app /app
+COPY --from=build /src/web /web
 EXPOSE 8080
 ENTRYPOINT [ "/app" ]
