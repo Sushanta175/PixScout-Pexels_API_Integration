@@ -139,3 +139,52 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Sushanta Sahu - github.com/Sushanta175
 
 Project Link: [https://github.com/Sushanta175/Go_Pexels_API](https://github.com/Sushanta175/Go_Pexels_API)
+
+---
+
+## 🚀 Web Explorer & DevOps Add-On
+
+The project now includes a **web GUI** and container-ready deployment for showcasing DevOps workflows.
+
+### Features
+
+| Feature | Details |
+|---------|---------|
+| Web GUI | Search photos in the browser using htmx + Go templates |
+| REST API | `/api/photos` and `/api/videos` endpoints |
+| SPA | Fully served from Go (no external web server) |
+| Docker | Multi-stage build, small distroless runtime image |
+| Kubernetes | Deployment, Service, Secret manifests included |
+| GitOps | Ready for Argo CD auto-sync |
+
+### Quick Start (Web GUI)
+
+```bash
+go run ./cmd/web
+# Open http://localhost:8080
+```
+
+### Docker
+
+```bash
+docker build -t pexels-app .
+docker run -p 8080:8080 --env-file=.env pexels-app
+```
+
+### Kubernetes
+
+```bash
+kubectl apply -f k8s/secret.yaml
+kubectl apply -f k8s/
+```
+
+### Repository Layout Additions
+
+```
+cmd/web/         # Web server entry point
+web/templates/   # HTML templates
+web/static/      # CSS + JS
+k8s/             # Kubernetes manifests
+Dockerfile       # Multi-stage Docker build
+```
+
