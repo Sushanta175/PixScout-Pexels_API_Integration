@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pexels-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pexels-app
+  template:
+    metadata:
+      labels:
+        app: pexels-app
+    spec:
+      containers:
+      - name: app
+        image: docker.io/sushant911/pexels-app:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: Pexels_Token          
+          valueFrom:
+            secretKeyRef:
+              name: pexels-secret
+              key: token
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pexels-svc
+spec:
+  type: LoadBalancer  # Or ClusterIP if you want to save cost
+  selector:
+    app: pexels-app
+  ports:
+    - port: 80
+      targetPort: 8080
