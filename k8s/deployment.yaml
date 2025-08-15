@@ -29,7 +29,7 @@ kind: Service
 metadata:
   name: pexels-svc
 spec:
-  type: LoadBalancer  # Or ClusterIP if you want to save cost
+  type: LoadBalancer  
   selector:
     app: pexels-app
   ports:
